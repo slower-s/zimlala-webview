@@ -5,10 +5,6 @@
     <link href="%PUBLIC_URL%/favicon.ico" rel="icon"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="#000000" name="theme-color"/>
-    <meta
-            content="Web site created using create-react-app"
-            name="description"
-    />
     <link href="%PUBLIC_URL%/logo192.png" rel="apple-touch-icon"/>
     <link href="%PUBLIC_URL%/manifest.json" rel="manifest"/>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -21,10 +17,6 @@
             {type: "경유지", marker: './stopby.svg', lat: 37.5019062, lng: 127.0350871},
             {type: "도착지", marker: './arrive.svg', lat: 37.50375, lng: 127.0467072},
         ];
-
-        function getLoadInfo() {
-
-        }
 
         function initTmap() {
             // 1. 지도 띄우기
@@ -51,32 +43,31 @@
                 strokeWeight: 10,
             }
             jsonObject.drawRoute(map, jsonForm, drawOption, (evt) => {
-                evt.markers.map((e, i) => {
+                evt.markers.map((e) => {
                     return e.setMap()
                 })
-                movePathPoints.map((e, i) => {
+                movePathPoints.map((e) => {
                     const {lat, lng} = e;
                     new Tmapv2.Marker({
-                        position: new Tmapv2.LatLng(e.lat, e.lng),
+                        position: new Tmapv2.LatLng(lat, lng),
                         map: map,
                         icon: e.marker,
                     })
-                    markers.push(new Tmapv2.LatLng(e.lat, e.lng))
+                    markers.push(new Tmapv2.LatLng(lat, lng))
                     return true;
                 })
             });
             let latSum = 0;
             let lngSum = 0;
             const movePathLength = movePathPoints.length;
-            movePathPoints.map((e, i) => {
+            movePathPoints.map((e) => {
                 latSum += e.lat;
                 lngSum += e.lng;
             })
             const centerLatLng = new Tmapv2.LatLng(latSum / movePathLength, lngSum / movePathLength);
             map.setCenter(centerLatLng)
             var bounds = new Tmapv2.LatLngBounds();
-            markers.map((e, i) => {
-                console.log(markers)
+            markers.map((e) => {
                 bounds.extend(e)
             })
             map.fitBounds(bounds, 10)
@@ -121,7 +112,8 @@
     <title>React App</title>
 </head>
 <body onload="initTmap()">
-<div id="map_div"/>
-<div id="root"/>
+<div id="map_div">
+</div>
+<div id="root"></div>
 </body>
 </html>
