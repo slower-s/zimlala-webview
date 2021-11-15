@@ -18,6 +18,7 @@
             {type: "도착지", marker: './arrive.svg', lat: 37.50375, lng: 127.0467072},
         ];
 
+
         function initTmap() {
             // 1. 지도 띄우기
             map = new Tmapv2.Map("map_div", {
@@ -70,8 +71,8 @@
             markers.map((e) => {
                 bounds.extend(e)
             })
-            // map.fitBounds(bounds, 10)
-            map.setZoom(15)
+            map.fitBounds(bounds, 10)
+            // map.setZoom(15)
         }
 
         function onProgress() {
@@ -108,7 +109,25 @@
 
         //줌 값에 따른 보이는 거리 (M)
         // 15, 31, 63, 127, 254, 509, 1020, 4080, 8150, 16310, 32610, 65230, 130450
-
+        const mapElement = document.getElementById('map_div');
+        mapElement.addEventListener('load', () => {
+            const listener = event => {
+                const {data, type} = JSON.parse(event.data);
+                if(type === "DRAW_PATH") {
+                    console.log(data)
+                    initTmap()
+                }
+                if (window.ReactNativeWebView) {
+                    /** android */
+                    document.addEventListener("message", listener);
+                    /** ios */
+                    window.addEventListener("message", listener);
+                } else {
+                    // 모바일이 아니라면 모바일 아님을 alert로 띄웁니다.
+                    alert({ message: ERROR_TYPES.notMobile });
+                }
+            }
+        }, false)
     </script>
     <title>React App</title>
 </head>
