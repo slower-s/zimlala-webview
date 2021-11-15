@@ -11,7 +11,7 @@
     />
     <link href="%PUBLIC_URL%/logo192.png" rel="apple-touch-icon"/>
     <link href="%PUBLIC_URL%/manifest.json" rel="manifest"/>
-    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx4ddbd730b2f44022b984f14ad0eb6ac5"></script>
     <script>
         var map;
@@ -67,7 +67,6 @@
             });
             let latSum = 0;
             let lngSum = 0;
-            const zoomStat = [15, 31, 63, 127, 254, 509, 1020, 4080, 8150, 16310, 32610, 65230, 130450]
             const movePathLength = movePathPoints.length;
             movePathPoints.map((e, i) => {
                 latSum += e.lat;
@@ -80,8 +79,7 @@
                 console.log(markers)
                 bounds.extend(e)
             })
-            console.log(map.getZoom())
-            map.fitBounds(bounds, 50)
+            map.fitBounds(bounds, 10)
         }
 
         function onProgress() {
