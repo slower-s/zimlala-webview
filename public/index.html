@@ -7,8 +7,8 @@
     <meta content="#000000" name="theme-color"/>
     <link href="%PUBLIC_URL%/logo192.png" rel="apple-touch-icon"/>
     <link href="manifest.json" rel="manifest"/>
-    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>
-    <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx4ddbd730b2f44022b984f14ad0eb6ac5"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx4ddbd730b2f44022b984f14ad0eb6ac5"></script>
     <script>
         var map;
         var markers = [];
@@ -24,12 +24,11 @@
             map = new Tmapv2.Map("map_div", {
                 center: new Tmapv2.LatLng(37.5030938, 127.0476949),
                 width: "100%",
-                height: "300px",
+                height: "100vh",
                 zoom: 18,
                 zoomControl: true,
                 scrollwheel: true
             });
-            Tmapv2.setHttpsMode(true);
             // 마커 찍기
 
 
