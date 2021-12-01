@@ -8,6 +8,7 @@
     <link href="%PUBLIC_URL%/logo192.png" rel="apple-touch-icon"/>
     <link href="%PUBLIC_URL%/manifest.json" rel="manifest"/>
     <script src="./jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=l7xx4ddbd730b2f44022b984f14ad0eb6ac5"></script>
     <script>
         var map;
@@ -29,6 +30,7 @@
                 zoomControl: true,
                 scrollwheel: true
             });
+            Tmapv2.setHttpsMode(true);
             // 마커 찍기
 
 
